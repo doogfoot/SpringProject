@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:dto="http://www.tmax.co.kr/sts4/dto" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:msg="http://www.tmax.co.kr/sts4/message" xmlns:resource="http://www.tmax.co.kr/sts4/resource" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="dto" ecore:package="com.tmaxsoft.sts4.dto" targetNamespace="http://www.tmax.co.kr/sts4/dto">
+  <xsd:import namespace="http://www.tmax.co.kr/sts4/message" schemaLocation="message.xsd"/>
+  <xsd:import namespace="http://www.tmax.co.kr/sts4/resource" schemaLocation="resource.xsd"/>
+  <xsd:element name="dto" type="dto:dtoType"/>
+  <xsd:simpleType ecore:name="DtoFieldBasicType" name="dtoFieldBasicType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="String"/>
+      <xsd:enumeration value="Number"/>
+      <xsd:enumeration value="include"/>
+      <xsd:enumeration value="binary"/>
+      <xsd:enumeration value="short"/>
+      <xsd:enumeration value="int"/>
+      <xsd:enumeration value="long"/>
+      <xsd:enumeration value="float"/>
+      <xsd:enumeration value="double"/>
+      <xsd:enumeration value="boolean"/>
+      <xsd:enumeration value="byte"/>
+      <xsd:enumeration value="char"/>
+      <xsd:enumeration ecore:name="Short1" value="Short"/>
+      <xsd:enumeration value="Integer"/>
+      <xsd:enumeration ecore:name="Long1" value="Long"/>
+      <xsd:enumeration ecore:name="Float1" value="Float"/>
+      <xsd:enumeration ecore:name="Double1" value="Double"/>
+      <xsd:enumeration value="BigInteger"/>
+      <xsd:enumeration value="BigDecimal"/>
+      <xsd:enumeration value="Date"/>
+      <xsd:enumeration value="Timestamp"/>
+      <xsd:enumeration ecore:name="Boolean1" value="Boolean"/>
+      <xsd:enumeration ecore:name="Byte1" value="Byte"/>
+      <xsd:enumeration value="Calendar"/>
+      <xsd:enumeration value="ArrayStart"/>
+      <xsd:enumeration value="ArrayEnd"/>
+      <xsd:enumeration value="StructStart"/>
+      <xsd:enumeration value="StructEnd"/>
+      <xsd:enumeration value="Map"/>
+      <xsd:enumeration value="BLocator"/>
+      <xsd:enumeration value="CLocator"/>
+      <xsd:enumeration value="pointer"/>
+      <xsd:enumeration value="Object"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType ecore:name="DtoFieldType" name="dtoFieldType">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="modeling" type="resource:modelingType"/>
+    </xsd:sequence>
+    <xsd:attribute name="array" type="xsd:string"/>
+    <xsd:attribute name="columnName" type="xsd:string"/>
+    <xsd:attribute name="comments" type="xsd:string"/>
+    <xsd:attribute name="dateFormat" type="xsd:string"/>
+    <xsd:attribute name="decimal" type="xsd:int"/>
+    <xsd:attribute name="defaultValue" type="xsd:string"/>
+    <xsd:attribute default="true" name="delegate" type="xsd:boolean"/>
+    <xsd:attribute default="false" name="encrypt" type="xsd:boolean"/>
+    <xsd:attribute name="fieldType" type="dto:dtoFieldBasicType" use="required"/>
+    <xsd:attribute name="includeDtoName" type="xsd:string"/>
+    <xsd:attribute name="includeDtoPath" type="xsd:string"/>
+    <xsd:attribute name="key" type="dto:keyType"/>
+    <xsd:attribute name="keyword" type="xsd:string"/>
+    <xsd:attribute name="length" type="xsd:string"/>
+    <xsd:attribute name="logicalName" type="xsd:string" use="required"/>
+    <xsd:attribute name="masking" type="xsd:string"/>
+    <xsd:attribute name="maskingEndIndex" type="xsd:int"/>
+    <xsd:attribute name="maskingRange" type="xsd:string"/>
+    <xsd:attribute name="maskingStartIndex" type="xsd:int"/>
+    <xsd:attribute name="metaId" type="xsd:string"/>
+    <xsd:attribute name="nullable" type="xsd:boolean"/>
+    <xsd:attribute name="physicalName" type="xsd:string" use="required"/>
+    <xsd:attribute name="referenceId" type="xsd:string"/>
+    <xsd:attribute name="schemaName" type="xsd:string"/>
+    <xsd:attribute name="tableName" type="xsd:string"/>
+    <xsd:attribute default="false" name="transient" type="xsd:boolean"/>
+    <xsd:attribute name="validationRule" type="xsd:string"/>
+  </xsd:complexType>
+  <xsd:complexType ecore:name="DtoType" name="dtoType">
+    <xsd:complexContent>
+      <xsd:extension base="resource:sts4Resource">
+        <xsd:sequence>
+          <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="dtoField" type="dto:dtoFieldType"/>
+          <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="messageInfo" type="dto:messageInfoType"/>
+          <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="message" type="msg:messageType"/>
+        </xsd:sequence>
+        <xsd:attribute default="false" name="builderPattern" type="xsd:boolean"/>
+        <xsd:attribute default="false" name="encryption" type="xsd:boolean"/>
+        <xsd:attribute default="false" name="isContext" type="xsd:boolean"/>
+        <xsd:attribute name="ruleDto" type="xsd:boolean"/>
+        <xsd:attribute name="stringDefaultValue" type="dto:stringDefaultValueType"/>
+        <xsd:attribute name="stringModifiedNullable" type="xsd:boolean"/>
+        <xsd:attribute name="superClassName" type="xsd:string"/>
+        <xsd:attribute name="superClassResourceId" type="xsd:string"/>
+        <xsd:attribute name="superClassResourcePath" type="xsd:string"/>
+        <xsd:attribute name="systemHeaderFrontValue" type="xsd:boolean"/>
+        <xsd:attribute name="systemHeaderRearValue" type="xsd:boolean"/>
+        <xsd:attribute name="validatorClassName" type="xsd:string"/>
+        <xsd:attribute name="validatorClassResourceId" type="xsd:string"/>
+        <xsd:attribute name="validatorClassResourcePath" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType ecore:name="KeyType" name="keyType">
+    <xsd:annotation>
+      <xsd:documentation>
+        	[Description]: DBDO의  필드 KEY Type
+            	KEY 	: PK
+                COMPOSITE 	: COMPOSITE KEY 
+                NONE	: KEY가 아닌 필드
+		</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="KEY"/>
+      <xsd:enumeration value="COMPOSITE"/>
+      <xsd:enumeration value="NONE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType ecore:name="MessageInfoType" name="messageInfoType">
+    <xsd:attribute name="messageId" type="xsd:string"/>
+    <xsd:attribute name="messageOption" type="xsd:string"/>
+    <xsd:attribute name="messagePath" type="xsd:string"/>
+    <xsd:attribute name="messagePhysicalName" type="xsd:string"/>
+    <xsd:attribute name="messageType" type="msg:messageBasicType"/>
+  </xsd:complexType>
+  <xsd:simpleType ecore:name="StringDefaultValueType" name="stringDefaultValueType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="null"/>
+      <xsd:enumeration value="empty"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

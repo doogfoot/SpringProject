@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:msg="http://www.tmax.co.kr/sts4/message" xmlns:resource="http://www.tmax.co.kr/sts4/resource" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="msg" ecore:package="com.tmaxsoft.sts4.message" targetNamespace="http://www.tmax.co.kr/sts4/message">
+  <xsd:import namespace="http://www.tmax.co.kr/sts4/resource" schemaLocation="resource.xsd"/>
+  <xsd:element name="message" type="msg:messageType"/>
+  <xsd:simpleType ecore:name="AlignBasicType" name="alignBasicType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="None"/>
+      <xsd:enumeration value="Left"/>
+      <xsd:enumeration value="Right"/>
+      <xsd:enumeration value="Center"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType ecore:name="BitmapBasicType" name="bitmapBasicType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="none"/>
+      <xsd:enumeration value="char"/>
+      <xsd:enumeration value="binary"/>
+      <xsd:enumeration value="string"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType ecore:name="EncodeOptionType" name="encodeOptionType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Char"/>
+      <xsd:enumeration value="KoreanSingleByte"/>
+      <xsd:enumeration value="KoreanDoubleByte"/>
+      <xsd:enumeration value="KoreanSpace"/>
+      <xsd:enumeration value="CharSOSI"/>
+      <xsd:enumeration value="CharSingleByte"/>
+      <xsd:enumeration value="NoConversion"/>
+      <xsd:enumeration value="COMP"/>
+      <xsd:enumeration ecore:name="COMP3" value="COMP-3"/>
+      <xsd:enumeration value="UnpackedDecimal"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType ecore:name="MessageBasicType" name="messageBasicType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="FixedLength"/>
+      <xsd:enumeration value="Delimiter"/>
+      <xsd:enumeration value="XML"/>
+      <xsd:enumeration value="ValueObject"/>
+      <xsd:enumeration value="NameValue"/>
+      <xsd:enumeration value="ProRule"/>
+      <xsd:enumeration value="FDL"/>
+      <xsd:enumeration value="JSON"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType ecore:name="MessageFieldBasicType" name="messageFieldBasicType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="string"/>
+      <xsd:enumeration value="number"/>
+      <xsd:enumeration value="integer"/>
+      <xsd:enumeration value="include"/>
+      <xsd:enumeration value="binary"/>
+      <xsd:enumeration value="date"/>
+      <xsd:enumeration value="short"/>
+      <xsd:enumeration value="int"/>
+      <xsd:enumeration value="long"/>
+      <xsd:enumeration value="float"/>
+      <xsd:enumeration value="double"/>
+      <xsd:enumeration value="boolean"/>
+      <xsd:enumeration value="byte"/>
+      <xsd:enumeration value="char"/>
+      <xsd:enumeration ecore:name="Short1" value="Short"/>
+      <xsd:enumeration ecore:name="Integer1" value="Integer"/>
+      <xsd:enumeration ecore:name="Long1" value="Long"/>
+      <xsd:enumeration ecore:name="Float1" value="Float"/>
+      <xsd:enumeration ecore:name="Double1" value="Double"/>
+      <xsd:enumeration value="BigInteger"/>
+      <xsd:enumeration value="BigDecimal"/>
+      <xsd:enumeration ecore:name="Date1" value="Date"/>
+      <xsd:enumeration value="Calendar"/>
+      <xsd:enumeration ecore:name="String1" value="String"/>
+      <xsd:enumeration value="ArrayStart"/>
+      <xsd:enumeration value="ArrayEnd"/>
+      <xsd:enumeration value="StructStart"/>
+      <xsd:enumeration value="StructEnd"/>
+      <xsd:enumeration value="Map"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType ecore:name="MessageFieldType" name="messageFieldType">
+    <xsd:attribute name="align" type="msg:alignBasicType"/>
+    <xsd:attribute name="array" type="xsd:string"/>
+    <xsd:attribute name="attributeTag" type="xsd:string"/>
+    <xsd:attribute name="bitmapNo" type="xsd:string"/>
+    <xsd:attribute name="comments" type="xsd:string"/>
+    <xsd:attribute name="dateFormat" type="xsd:string"/>
+    <xsd:attribute name="decimal" type="xsd:int"/>
+    <xsd:attribute name="decimalAlign" type="msg:alignBasicType"/>
+    <xsd:attribute name="delegate" type="xsd:boolean"/>
+    <xsd:attribute name="delimiter" type="xsd:string"/>
+    <xsd:attribute name="dtoArray" type="xsd:string"/>
+    <xsd:attribute default="Char" name="encodeOption" type="msg:encodeOptionType"/>
+    <xsd:attribute name="fieldControlTag" type="xsd:string"/>
+    <xsd:attribute name="fieldKey" type="xsd:string"/>
+    <xsd:attribute name="fieldType" type="msg:messageFieldBasicType" use="required"/>
+    <xsd:attribute name="fill" type="xsd:string"/>
+    <xsd:attribute name="handler" type="xsd:string"/>
+    <xsd:attribute name="includeMessageName" type="xsd:string"/>
+    <xsd:attribute name="includeMessagePath" type="xsd:string"/>
+    <xsd:attribute name="includeNameSpace" type="xsd:string"/>
+    <xsd:attribute default="true" name="isElement" type="xsd:boolean"/>
+    <xsd:attribute name="length" type="xsd:string"/>
+    <xsd:attribute name="logicalName" type="xsd:string"/>
+    <xsd:attribute name="masking" type="xsd:string"/>
+    <xsd:attribute name="maskingEndIndex" type="xsd:int"/>
+    <xsd:attribute name="maskingRange" type="xsd:string"/>
+    <xsd:attribute name="maskingStartIndex" type="xsd:int"/>
+    <xsd:attribute name="metaId" type="xsd:string"/>
+    <xsd:attribute name="physicalName" type="xsd:string"/>
+    <xsd:attribute name="point" type="xsd:boolean"/>
+    <xsd:attribute name="referencedtoName" type="xsd:string"/>
+    <xsd:attribute name="referenceFieldId" type="xsd:string"/>
+    <xsd:attribute name="referenceId" type="xsd:string"/>
+    <xsd:attribute name="required" type="xsd:boolean"/>
+    <xsd:attribute name="sign" type="xsd:boolean"/>
+    <xsd:attribute default="default" name="trimFlag" type="msg:trimFlagType"/>
+  </xsd:complexType>
+  <xsd:simpleType ecore:name="MessageFixedLengthNumberFormatType" name="messageFixedLengthNumberFormatType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="None"/>
+      <xsd:enumeration value="Original"/>
+      <xsd:enumeration value="Compatible"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType ecore:name="MessageType" name="messageType">
+    <xsd:complexContent>
+      <xsd:extension base="resource:sts4Resource">
+        <xsd:sequence>
+          <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="messageField" type="msg:messageFieldType"/>
+          <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="resoureName" nillable="true" type="xsd:string"/>
+          <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="bitmapInput" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+        <xsd:attribute default="false" name="arraySizeCheck" type="xsd:boolean"/>
+        <xsd:attribute name="bitmapExpression" type="xsd:string"/>
+        <xsd:attribute name="bitmapType" type="msg:bitmapBasicType"/>
+        <xsd:attribute default="true" name="delegate" type="xsd:boolean"/>
+        <xsd:attribute name="delimiter" type="xsd:string"/>
+        <xsd:attribute name="dtoId" type="xsd:string"/>
+        <xsd:attribute name="dtoName" type="xsd:string" use="required"/>
+        <xsd:attribute name="dtoPath" type="xsd:string"/>
+        <xsd:attribute name="elementName" type="xsd:string"/>
+        <xsd:attribute default="false" name="exclusiveNullValue" type="xsd:boolean"/>
+        <xsd:attribute name="handler" type="xsd:string"/>
+        <xsd:attribute default="false" name="isContext" type="xsd:boolean"/>
+        <xsd:attribute name="messageFixedLengthNumberFormat" type="msg:messageFixedLengthNumberFormatType"/>
+        <xsd:attribute name="messageNameSpace" type="xsd:string"/>
+        <xsd:attribute name="messageOption" type="xsd:string"/>
+        <xsd:attribute name="messageType" type="msg:messageBasicType" use="required"/>
+        <xsd:attribute name="optionName" type="xsd:string"/>
+        <xsd:attribute name="rootName" type="xsd:string"/>
+        <xsd:attribute name="superClassName" type="xsd:string"/>
+        <xsd:attribute name="superClassResourceId" type="xsd:string"/>
+        <xsd:attribute name="superClassResourcePath" type="xsd:string"/>
+        <xsd:attribute default="rtrim" name="trimFlag" type="msg:trimFlagType"/>
+        <xsd:attribute name="wsdlFileName" type="xsd:string"/>
+        <xsd:attribute name="wsdlMessageQName" type="xsd:string"/>
+        <xsd:attribute name="wsdlResourceId" type="xsd:string"/>
+        <xsd:attribute name="wsdlResourcePath" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType ecore:name="TrimFlagType" name="trimFlagType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="none"/>
+      <xsd:enumeration value="rtrim"/>
+      <xsd:enumeration value="ltrim"/>
+      <xsd:enumeration value="lrtrim"/>
+      <xsd:enumeration value="default"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

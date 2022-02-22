@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:com.sun.java.xml.ns.jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:resource="http://www.tmax.co.kr/sts4/resource" xmlns:xsd="http://www.w3.org/2001/XMLSchema" com.sun.java.xml.ns.jaxb:version="1.0" ecore:nsPrefix="resource" ecore:package="com.tmaxsoft.sts4.resource" targetNamespace="http://www.tmax.co.kr/sts4/resource">
+  <xsd:complexType ecore:name="ModelingType" name="modelingType">
+    <xsd:attribute name="uri" type="xsd:string"/>
+  </xsd:complexType>
+  <xsd:complexType ecore:name="Sts4Resource" name="sts4Resource">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="modeling" type="resource:modelingType"/>
+      <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="property" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+    <xsd:attribute ecore:name="applicationName" name="ApplicationName" type="xsd:string"/>
+    <xsd:attribute name="buildTime" type="resource:Timestamp"/>
+    <xsd:attribute name="created" type="xsd:string"/>
+    <xsd:attribute name="creator" type="xsd:string"/>
+    <xsd:attribute name="description" type="xsd:string"/>
+    <xsd:attribute name="lastUpdated" type="xsd:string"/>
+    <xsd:attribute name="lockOwner" type="xsd:string"/>
+    <xsd:attribute name="logicalName" type="xsd:string"/>
+    <xsd:attribute name="modifier" type="xsd:string"/>
+    <xsd:attribute name="owner" type="xsd:string"/>
+    <xsd:attribute name="physicalName" type="xsd:string"/>
+    <xsd:attribute name="resourceId" type="xsd:string"/>
+    <xsd:attribute name="resourcePackage" type="xsd:string"/>
+    <xsd:attribute name="resourcePath" type="xsd:string"/>
+    <xsd:attribute name="resourceType" type="resource:resourceBasicType"/>
+    <xsd:attribute name="revision" type="xsd:string"/>
+    <xsd:attribute name="serviceGroupName" type="xsd:string"/>
+    <xsd:attribute name="status" type="resource:statusType"/>
+    <xsd:attribute name="versionNo" type="xsd:string"/>
+  </xsd:complexType>
+  <xsd:simpleType ecore:name="ResourceBasicType" name="resourceBasicType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="APPLICATION"/>
+      <xsd:enumeration ecore:name="SERVICEGROUP" value="SERVICE_GROUP"/>
+      <xsd:enumeration ecore:name="DATAOBJECT" value="DATA_OBJECT"/>
+      <xsd:enumeration ecore:name="DATAOBJECTFACTORY" value="DATA_OBJECT_FACTORY"/>
+      <xsd:enumeration value="QUERY"/>
+      <xsd:enumeration ecore:name="BIZOBJECT" value="BIZ_OBJECT"/>
+      <xsd:enumeration ecore:name="SERVICEOBJECT" value="SERVICE_OBJECT"/>
+      <xsd:enumeration ecore:name="JOBOBJECT" value="JOB_OBJECT"/>
+      <xsd:enumeration ecore:name="TASKOBJECT" value="TASK_OBJECT"/>
+      <xsd:enumeration value="DTO"/>
+      <xsd:enumeration value="MESSAGE"/>
+      <xsd:enumeration value="PROPERTY"/>
+      <xsd:enumeration ecore:name="UIOBJECT" value="UI_OBJECT"/>
+      <xsd:enumeration ecore:name="SERVICEOBJECTASYNC" value="SERVICE_OBJECT_ASYNC"/>
+      <xsd:enumeration ecore:name="SERVICEOBJECTAUTOMATIC" value="SERVICE_OBJECT_AUTOMATIC"/>
+      <xsd:enumeration ecore:name="DATATRANSFEROBJECT" value="DATA_TRANSFER_OBJECT"/>
+      <xsd:enumeration ecore:name="TOPWAR" value="TOP_WAR"/>
+      <xsd:enumeration value="JAVA"/>
+      <xsd:enumeration value="EVENT"/>
+      <xsd:enumeration ecore:name="EVENTSERVICEOBJECT" value="EVENT_SERVICE_OBJECT"/>
+      <xsd:enumeration value="ASPECTJ"/>
+      <xsd:enumeration value="STRUCTURE"/>
+      <xsd:enumeration value="MAP"/>
+      <xsd:enumeration ecore:name="DBIOCONFIG" value="DBIO_CONFIG"/>
+      <xsd:enumeration value="OTHER"/>
+      <xsd:enumeration value="DEPENDENCY"/>
+      <xsd:enumeration value="MODULE"/>
+      <xsd:enumeration value="TESTCASE"/>
+      <xsd:enumeration value="TESTDATA"/>
+      <xsd:enumeration value="MAPPING"/>
+      <xsd:enumeration value="CONSTANT"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType ecore:name="StatusType" name="statusType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="DEV"/>
+      <xsd:enumeration value="TST"/>
+      <xsd:enumeration ecore:value="3" value="REL"/>
+      <xsd:enumeration ecore:value="4" value="Y"/>
+      <xsd:enumeration ecore:value="5" value="N"/>
+      <xsd:enumeration ecore:value="6" value="D"/>
+      <xsd:enumeration ecore:value="7" value="E"/>
+      <xsd:enumeration ecore:value="8" value="C"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="Timestamp">
+    <xsd:annotation>
+      <xsd:appinfo ecore:key="appinfo">&#13;
+				&lt;jaxb:javaType name="java.sql.Timestamp" parseMethod="valueOf" printMethod="toString" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"/&gt;&#13;
+			</xsd:appinfo>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:long"/>
+  </xsd:simpleType>
+</xsd:schema>
