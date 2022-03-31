@@ -8,19 +8,47 @@
     xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.1">
     <import schemaLocation="resource.xsd"
         namespace="http://www.tmax.co.kr/proobject/resource" />
-    <element name="servicegroup">
-		<xs:complexType>
-		  <xs:sequence>
-			<xs:element minOccurs="0" ref="service"/>			
-		  </xs:sequence>
-		</xs:complexType>
-	</element>		
-	<xs:element name="service">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:attribute name="name" use="required"/>
-		<xs:attribute name="value" use="required"/>
-      </xs:sequence>      
-    </xs:complexType>
-	</xs:element>  
+    <element name="servicegroup" type="svg:serviceGroupType" />
+    <complexType name="serviceGroupType">
+        <complexContent>
+            <extension base="rsc:proObjectResource">
+                <sequence>
+                    <element name="service"
+                        type="svg:serviceInfo" minOccurs="0"
+                        maxOccurs="100" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="serviceInfo">
+        <complexContent>
+            <extension base="rsc:proObjectResource">
+                <sequence>
+                    <element name="serviceMethodName"
+                        type="string" />
+                    <element name="input"
+                        type="rsc:proObjectResource" />
+                    <element name="output"
+                        type="rsc:proObjectResource" />
+                    <element name="urlMapping"
+                        type="svg:urlMappingType"></element>
+                    <element name="txAttr" type="svg:txAttrType"></element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="urlMappingType">
+        <attribute name="url" type="string" />
+        <attribute name="restType" type="svg:restType" />
+    </complexType>
+    <simpleType name="restType">
+        <restriction base="string">
+            <enumeration value="GET" />
+            <enumeration value="POST" />
+        </restriction>
+    </simpleType>
+    <complexType name="txAttrType">
+        <attribute name="value" type="string" />
+        <attribute name="propagation" type="string" />
+    </complexType>
 </schema>
